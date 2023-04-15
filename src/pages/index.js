@@ -4,9 +4,19 @@ import * as ListIconBulk from "react-huge-icons/bulk";
 import ShowIcon from "@/components/ShowIcon";
 import React from "react";
 import Head from "next/head";
+import { useRouter } from "next/router";
 import styled, { keyframes } from "styled-components";
+import { Toaster } from "react-hot-toast";
 
 export default function Home() {
+	const { asPath } = useRouter();
+	const origin =
+		typeof window !== "undefined" && window.location.origin
+			? window.location.origin
+			: "";
+
+	const URL = `${origin}${asPath}`;
+
 	const GradientColors =
 		"linear-gradient(90deg, rgba(14,165,233,1) 0%, rgba(253,184,39,1) 50%, rgba(14,165,233,1) 100%)";
 
@@ -32,32 +42,29 @@ export default function Home() {
 	return (
 		<>
 			<Head>
-				<title>Zero Limit</title>
+				<title>React Icons package, Huge Icons</title>
 				<meta
 					name="description"
-					content="Developer of ReactJs and NextJs app packages | Zero Limit"
+					content="React Icons package, Huge Icons | Zero Limit"
+				/>
+				<link rel="icon" href="/zerolimit.svg" />
+				<meta name="theme-color" content="#0ea5e9" />
+				<link rel="canonical" href={URL} />
+				<meta property="og:title" content="React Icons package, Huge Icons" />
+				<meta
+					property="og:description"
+					content="React Icons package, Huge Icons | Zero Limit"
 				/>
 				<meta
-					name="google-site-verification"
-					content="ltvuxmUAGhZP4OALQhuFZLnIq7WJHqxCs6LPJ8JrjJM"
+					property="og:image"
+					content="https://huge-icons.zerolimit.ir/react-huge-icons.jpg"
 				/>
 			</Head>
-
 			<main>
-				<Head>
-					<title>React Icons package, Huge Icons</title>
-					<meta
-						name="description"
-						content="React Icons package, Huge Icons | Zero LimLimitit"
-					/>
-				</Head>
-
 				<header className="text-center my-5 lg:my-10">
-					
 					<GradientText className="text-base md:text-2xl lg:text-4xl xl:text-5xl lg:h-16">
 						Huge Icons Name - React | Flutter | Vue!
 					</GradientText>
-
 				</header>
 
 				<div className="container">
@@ -69,6 +76,8 @@ export default function Home() {
 						}}
 					/>
 				</div>
+
+				<Toaster position="bottom-center" reverseOrder={false} />
 			</main>
 		</>
 	);

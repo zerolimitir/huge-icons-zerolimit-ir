@@ -32,7 +32,7 @@ const colors = [
 
 const RandomColorIcons = ({ dataIcons, tagNew }) => {
 	const [copied, setCopied] = useState("");
-	const isIcon = copied == dataIcons.name;
+	const isCopy = copied == dataIcons.name;
 
 	setTimeout(() => {
 		setCopied("");
@@ -48,33 +48,26 @@ const RandomColorIcons = ({ dataIcons, tagNew }) => {
 			<CopyToClipboard
 				text={dataIcons.name}
 				onCopy={() => setCopy(dataIcons.name)}>
-				<li className="h-full w-full p-1 flex flex-col items-center gap-3">
+				<li
+					className={`h-full w-full flex flex-col items-center gap-3 border rounded-lg duration-300 ${
+						isCopy ? colors[dataIcons.randomNum].border : "border-secondary"
+					}`}>
 					<span
-						className={`relative w-24 h-24 flex items-center justify-center overflow-hidden border ${
-							colors[dataIcons.randomNum].border
-						} ${
-							isIcon
-								? colors[dataIcons.randomNum].background + " text-white"
-								: colors[dataIcons.randomNum].text + " bg-secondary"
-						} rounded-lg px-4 py-10 cursor-pointer`}>
-						<dataIcons.component className=" w-12 h-12" />
+						className={`relative w-full h-24 flex items-center justify-center overflow-hidden border bg-secondary rounded-lg px-4 py-10 cursor-pointer duration-300 ${
+							isCopy ? "border-secondary" : colors[dataIcons.randomNum].border
+						} ${colors[dataIcons.randomNum].text}`}>
+						<dataIcons.component className="w-12 h-12" />
 
 						{tagNew && (
 							<span
-								className={`rounded-br-lg absolute top-0 left-0 text-[10px] border px-1 py-0.5 ${
-									isIcon
-										? colors[dataIcons.randomNum].background + " text-white"
-										: colors[dataIcons.randomNum].text + " bg-secondary"
-								}   ${colors[dataIcons.randomNum].border}`}>
+								className={`absolute top-0 left-0 text-[10px] px-1 py-0.5 bg-secondary`}>
 								New
 							</span>
 						)}
 					</span>
 					<div className="w-full h-full text-center whitespace-pre-line overflow-hidden text-ellipsis">
 						<span
-							className={`${
-								colors[dataIcons.randomNum].text
-							} font-bold text-xs`}>
+							className={`font-bold text-xs opacity-30`}>
 							{dataIcons.name}
 						</span>
 					</div>

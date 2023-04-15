@@ -36,7 +36,7 @@ const RandomColorIcons = ({ dataIcons, tagNew }) => {
 
 	setTimeout(() => {
 		setCopied("");
-	}, 2000);
+	}, 2500);
 
 	const setCopy = name => {
 		setCopied(name);
